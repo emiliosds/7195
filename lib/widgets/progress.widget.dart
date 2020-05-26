@@ -14,10 +14,11 @@ class Progress extends StatelessWidget {
     return Column(
       children: <Widget>[
         Text(
-          "${(bloc.time - bloc.seconds).toInt()} sec",
+          "${(bloc.time - bloc.seconds).round()} sec",
           style: TextStyle(
-            fontWeight: FontWeight.bold,
             fontSize: 45,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).accentColor,
           ),
           textAlign: TextAlign.center,
         ),

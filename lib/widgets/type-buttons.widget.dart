@@ -1,4 +1,5 @@
 import 'package:eggs/blocs/app.bloc.dart';
+import 'package:eggs/models/cooking.level.dart';
 import 'package:eggs/widgets/button.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,23 +17,23 @@ class TypeButtons extends StatelessWidget {
       children: <Widget>[
         Button(
           label: "Soft",
-          selected: bloc.selected == "soft",
+          selected: bloc.selected == CookingLevel.soft,
           callback: () {
-            bloc.select("soft");
+            bloc.select(CookingLevel.soft);
           },
         ),
         Button(
           label: "Medium",
-          selected: bloc.selected == "medium",
+          selected: bloc.selected == CookingLevel.medium,
           callback: () {
-            bloc.select("medium");
+            bloc.select(CookingLevel.medium);
           },
         ),
         Button(
           label: "Hard",
-          selected: bloc.selected == "hard",
+          selected: bloc.selected == CookingLevel.hard,
           callback: () {
-            bloc.select("hard");
+            bloc.select(CookingLevel.hard);
           },
         ),
       ],

@@ -10,6 +10,7 @@ ThemeData appTheme() {
     textTheme: new TextTheme(
       bodyText2: new TextStyle(
         fontFamily: "Montserrat",
+        color: Colors.black87,
       ),
       bodyText1: TextStyle(
         fontFamily: "Montserrat",
@@ -28,6 +29,7 @@ ThemeData appTheme() {
       ),
       headline2: TextStyle(
         fontFamily: "Montserrat",
+        color: Colors.black38,
       ),
       headline1: TextStyle(
         fontFamily: "Montserrat",
@@ -40,6 +42,7 @@ ThemeData appTheme() {
       ),
       subtitle1: TextStyle(
         fontFamily: "Montserrat",
+        color: Colors.black87,
       ),
       subtitle2: TextStyle(
         fontFamily: "Montserrat",

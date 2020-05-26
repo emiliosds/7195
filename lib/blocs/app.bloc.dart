@@ -1,13 +1,15 @@
 import 'dart:async';
+import 'package:eggs/models/cooking.level.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppBloc extends ChangeNotifier {
   // O time é executado de segundo em segundo, pode ser
   // utilizado para criação de cronometros e/ou temporizadores
   Timer timer;
   String state = "stopped";
-  String selected = "soft";
-  double time = 0.5 * 60.0;
+  CookingLevel selected = CookingLevel.soft;
+  double time = 1;
   double seconds = 0;
   double percent = 0;
 
@@ -18,40 +20,14 @@ class AppBloc extends ChangeNotifier {
     if (seconds == time) done();
   }
 
-  select(String type) {
-    switch (type) {
-      case "soft":
-        {
-          selected = "soft";
-          time = 0.5 * 60.0;
-          notifyListeners();
-          return;
-        }
-      case "medium":
-        {
-          selected = "medium";
-          time = 1.0 * 60.0;
-          notifyListeners();
-          return;
-        }
-      case "hard":
-        {
-          selected = "hard";
-          time = 1.5 * 60.0;
-          notifyListeners();
-          return;
-        }
-      default:
-        {
-          selected = "soft";
-          time = 0.5 * 60.0;
-          notifyListeners();
-          return;
-        }
-    }
+  select(CookingLevel level) {
+    selected = level;
+    notifyListeners();
+    return;
   }
 
   start() {
+    load();
     state = "cooking";
     timer = Timer.periodic(
       Duration(seconds: 1),
@@ -78,5 +54,13 @@ class AppBloc extends ChangeNotifier {
 
   reset() {
     stop();
+  }
+
+  Future load() async {
+    var preferences = await SharedPreferences.getInstance();
+    var data = preferences.getDouble(selected.toString());
+    print(data);
+    if (data == null) data = 1;
+    time = data * 60.0;
   }
 }
