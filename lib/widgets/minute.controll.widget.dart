@@ -1,14 +1,11 @@
-import 'package:eggs/blocs/preference.bloc.dart';
 import 'package:eggs/models/cooking.level.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MinuteControll extends StatefulWidget {
-  final String label;
   final CookingLevel level;
-  MinuteControll({@required this.label, @required this.level});
+  MinuteControll({@required this.level});
 
   @override
   _MinuteControllState createState() => _MinuteControllState();
@@ -29,7 +26,7 @@ class _MinuteControllState extends State<MinuteControll> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            widget.label,
+            widget.level.name + " minutes",
             style: TextStyle(
               color: Theme.of(context).accentColor,
               fontSize: 22,
@@ -58,7 +55,7 @@ class _MinuteControllState extends State<MinuteControll> {
             },
             child: Container(
               alignment: Alignment.center,
-              width: 75,
+              width: 85,
               decoration: BoxDecoration(
                 color: Theme.of(context).hoverColor,
                 borderRadius: BorderRadius.all(

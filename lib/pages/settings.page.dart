@@ -2,6 +2,7 @@ import 'package:eggs/blocs/preference.bloc.dart';
 import 'package:eggs/models/cooking.level.dart';
 import 'package:eggs/widgets/button.widget.dart';
 import 'package:eggs/widgets/minute.controll.widget.dart';
+import 'package:eggs/widgets/theme.controll.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,17 +47,15 @@ class _SettingsPageState extends State<SettingsPage> {
               height: 20,
             ),
             MinuteControll(
-              label: "Soft minutes",
               level: CookingLevel.soft,
             ),
             MinuteControll(
-              label: "Medium minutes",
               level: CookingLevel.medium,
             ),
             MinuteControll(
-              label: "Hard minutes",
               level: CookingLevel.hard,
             ),
+            ThemeControll(),
             SizedBox(
               height: 20,
             ),
