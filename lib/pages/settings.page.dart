@@ -1,8 +1,9 @@
+import 'package:eggs/blocs/preference.bloc.dart';
 import 'package:eggs/models/cooking.level.dart';
 import 'package:eggs/widgets/button.widget.dart';
 import 'package:eggs/widgets/minute.controll.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -12,6 +13,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of<PreferenceBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white.withOpacity(0),
@@ -22,6 +25,10 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Container(
         child: ListView(
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+          ),
           children: <Widget>[
             SizedBox(
               height: 50,
@@ -49,6 +56,14 @@ class _SettingsPageState extends State<SettingsPage> {
             MinuteControll(
               label: "Hard minutes",
               level: CookingLevel.hard,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Button(
+              label: "RESET DEFAULT VALUES",
+              selected: true,
+              callback: bloc.reset,
             ),
           ],
         ),

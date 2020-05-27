@@ -1,4 +1,5 @@
 import 'package:eggs/blocs/app.bloc.dart';
+import 'package:eggs/blocs/preference.bloc.dart';
 import 'package:eggs/pages/splash.page.dart';
 import 'package:eggs/themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AppBloc>.value(
           value: AppBloc(),
+        ),
+        ChangeNotifierProvider<PreferenceBloc>.value(
+          value: PreferenceBloc(),
         )
       ],
       child: Main(),
@@ -28,7 +32,7 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Perfect Eggs',
-      theme: appTheme(),
+      theme: lightTheme(),
       debugShowCheckedModeBanner: false,
       home: SplashPage(),
     );

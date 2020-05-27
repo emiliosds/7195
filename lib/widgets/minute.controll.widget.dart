@@ -1,6 +1,8 @@
+import 'package:eggs/blocs/preference.bloc.dart';
 import 'package:eggs/models/cooking.level.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MinuteControll extends StatefulWidget {
@@ -15,16 +17,13 @@ class MinuteControll extends StatefulWidget {
 class _MinuteControllState extends State<MinuteControll> {
   double _minutes = 0;
 
-  _MinuteControllState() {
-    load();
-  }
-
   @override
   Widget build(BuildContext context) {
+    load();
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 25,
-        vertical: 8,
+      padding: const EdgeInsets.only(
+        top: 8,
+        bottom: 8,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,15 +92,15 @@ class _MinuteControllState extends State<MinuteControll> {
     Scaffold.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          "Saved!",
+          "Saved",
           style: TextStyle(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).accentColor,
           ),
         ),
         duration: Duration(
           seconds: 2,
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
     );
   }

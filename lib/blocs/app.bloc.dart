@@ -59,7 +59,6 @@ class AppBloc extends ChangeNotifier {
   Future load() async {
     var preferences = await SharedPreferences.getInstance();
     var data = preferences.getDouble(selected.toString());
-    print(data);
     if (data == null) data = 1;
     time = data * 60.0;
   }

@@ -26,7 +26,7 @@ class Progress extends StatelessWidget {
           padding: const EdgeInsets.all(20),
           child: LinearProgressIndicator(
             value: bloc.percent / 100,
-            backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).accentColor.withOpacity(0.1),
             valueColor: new AlwaysStoppedAnimation<Color>(
               Theme.of(context).primaryColor,
             ),

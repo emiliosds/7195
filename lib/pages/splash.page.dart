@@ -1,15 +1,21 @@
-import 'package:eggs/models/cooking.level.dart';
+import 'package:eggs/blocs/preference.bloc.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 import 'home.page.dart';
 
 class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    setup();
+    final bloc = Provider.of<PreferenceBloc>(context);
+    bloc.setup();
+
     delay(context);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white.withOpacity(0),
+        elevation: 0,
+      ),
       body: Column(
         children: <Widget>[
           SizedBox(
@@ -38,30 +44,6 @@ class SplashPage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  setup() {
-    load(CookingLevel.soft, 10.0);
-    load(CookingLevel.medium, 20.0);
-    load(CookingLevel.hard, 30.0);
-  }
-
-  Future load(level, double minutes) async {
-    var preferences = await SharedPreferences.getInstance();
-    var contain = preferences.containsKey(level.toString());
-    if (!contain) save(level.toString(), minutes);
-  }
-
-  save(level, double minutes) async {
-    var preferences = await SharedPreferences.getInstance();
-    await preferences.setDouble(level, minutes);
-  }
-
-  reset() async {
-    var preferences = await SharedPreferences.getInstance();
-    await preferences.remove(CookingLevel.soft.toString());
-    await preferences.remove(CookingLevel.medium.toString());
-    await preferences.remove(CookingLevel.hard.toString());
   }
 
   Future delay(context) async {
